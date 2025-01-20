@@ -1,17 +1,13 @@
-# OpenShift Workshop
+# Best Practices for Develop Cloud-Native Application
 
-![](images/workshop.png)
+![](images/preface.png)
 
 ## Table of Contents
-<!---
-- [Prerequisite for workshop (Instructor Only)](prereq.md)
-- Complex Cloud-Native Application with Live Flight Track Demo](liveflight.md)
 
---->
 
 - [Deploy Cloud-Native Application with OpenShift](deploywiths2i.md)
 
-
+- [Keep Application Configuration Outside Container Image](evconfigsecret.md)
 
 
 
