@@ -6,11 +6,10 @@
   - [Environment Variable](#environment-variable)
   - [Configmap](#configmap)
   - [Secret](#secret)
-  - [Next Step](#next-step)
 
 <!-- /TOC -->
 ## Prerequisite
-- Complete [Deploy application to openshift with s2i](deploywiths2i.md)
+- Complete [Deploy Cloud-Native Application with OpenShift](deploywiths2i.md)
 - Go to your project (same as your username)
 - Open Web Terminal by click '>_' on top of OpenShift Web Console
 - use web terminal to run command line
@@ -179,6 +178,5 @@ The Secret object type provides a mechanism to hold sensitive information such a
   Backend version:v1, Response:200, Host:backend-5bc95899d-tdmv5, Status:200, Message: Hi! World of Quarkus!
   ```
 
-## Next Step
-- [Application Health check](apphealth.md)
+
 

@@ -6,7 +6,6 @@
   - [Set Default OpenShift Console!!!](#set-default-openshift-console)
   - [Deploy Application to Openshift with OpenShift Developer Console (S2I)](#deploy-application-to-openshift-with-openshift-developer-console-s2i)
   - [Test Rest API of Backend Application](#test-rest-api-of-backend-application)
-  - [Next Step](#next-step)
 
 <!-- /TOC -->
 <!-- /TOC -->
@@ -177,5 +176,3 @@
   ```
   - remark: Host name in result of this api is name of Pod, please check and verify it!
 - if done!, You are ready for the next step.
-## Next Step
-- [Basic Openshift Topology](openshifttopology.md)
