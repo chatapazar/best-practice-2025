@@ -5,8 +5,6 @@
 ## Install Operator
 
 - Login wih Cluster Admin for Install Operator
-- Red Hat Streams for Apache Kafka 2.2 channel, version 2.2.1-7 !!!
-- Serverless (create knative-serving in project knative-serving)
 - Web Terminal
 - OpenShift Logging 5.9
 - Loki 5.9
