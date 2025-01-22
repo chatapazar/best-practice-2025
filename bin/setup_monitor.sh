@@ -1,83 +1,13 @@
 #!/bin/sh
-echo "add role 1 to 20 ..."
-oc login -u admin -p 4gXshUIMLY507pBL --insecure-skip-tls-verify
-oc adm policy add-role-to-user monitoring-edit user1 -n user1
-oc adm policy add-role-to-user monitoring-edit user2 -n user2
-oc adm policy add-role-to-user monitoring-edit user3 -n user3
-oc adm policy add-role-to-user monitoring-edit user4 -n user4
-oc adm policy add-role-to-user monitoring-edit user5 -n user5
-oc adm policy add-role-to-user monitoring-edit user6 -n user6
-oc adm policy add-role-to-user monitoring-edit user7 -n user7
-oc adm policy add-role-to-user monitoring-edit user8 -n user8
-oc adm policy add-role-to-user monitoring-edit user9 -n user9
-oc adm policy add-role-to-user monitoring-edit user10 -n user10
-oc adm policy add-role-to-user monitoring-edit user11 -n user11
-oc adm policy add-role-to-user monitoring-edit user12 -n user12
-oc adm policy add-role-to-user monitoring-edit user13 -n user13
-oc adm policy add-role-to-user monitoring-edit user14 -n user14
-oc adm policy add-role-to-user monitoring-edit user15 -n user15
-oc adm policy add-role-to-user monitoring-edit user16 -n user16
-oc adm policy add-role-to-user monitoring-edit user17 -n user17
-oc adm policy add-role-to-user monitoring-edit user18 -n user18
-oc adm policy add-role-to-user monitoring-edit user19 -n user19
-oc adm policy add-role-to-user monitoring-edit user20 -n user20
-oc adm policy add-role-to-user  monitoring-rules-view user1 -n user1
-oc adm policy add-role-to-user  monitoring-rules-edit user1 -n user1
-oc adm policy add-role-to-user  monitoring-rules-view user2 -n user2
-oc adm policy add-role-to-user  monitoring-rules-edit user2 -n user2
-oc adm policy add-role-to-user  monitoring-rules-view user3 -n user3
-oc adm policy add-role-to-user  monitoring-rules-edit user3 -n user3
-oc adm policy add-role-to-user  monitoring-rules-view user4 -n user4
-oc adm policy add-role-to-user  monitoring-rules-edit user4 -n user4
-oc adm policy add-role-to-user  monitoring-rules-view user5 -n user5
-oc adm policy add-role-to-user  monitoring-rules-edit user5 -n user5
-oc adm policy add-role-to-user  monitoring-rules-view user6 -n user6
-oc adm policy add-role-to-user  monitoring-rules-edit user6 -n user6
-oc adm policy add-role-to-user  monitoring-rules-view user7 -n user7
-oc adm policy add-role-to-user  monitoring-rules-edit user7 -n user7
-oc adm policy add-role-to-user  monitoring-rules-view user8 -n user8
-oc adm policy add-role-to-user  monitoring-rules-edit user8 -n user8
-oc adm policy add-role-to-user  monitoring-rules-view user9 -n user9
-oc adm policy add-role-to-user  monitoring-rules-edit user9 -n user9
-oc adm policy add-role-to-user  monitoring-rules-view user10 -n user10
-oc adm policy add-role-to-user  monitoring-rules-edit user10 -n user10
-oc adm policy add-role-to-user  monitoring-rules-view user11 -n user11
-oc adm policy add-role-to-user  monitoring-rules-edit user11 -n user11
-oc adm policy add-role-to-user  monitoring-rules-view user12 -n user12
-oc adm policy add-role-to-user  monitoring-rules-edit user12 -n user12
-oc adm policy add-role-to-user  monitoring-rules-view user13 -n user13
-oc adm policy add-role-to-user  monitoring-rules-edit user13 -n user13
-oc adm policy add-role-to-user  monitoring-rules-view user14 -n user14
-oc adm policy add-role-to-user  monitoring-rules-edit user14 -n user14
-oc adm policy add-role-to-user  monitoring-rules-view user15 -n user15
-oc adm policy add-role-to-user  monitoring-rules-edit user15 -n user15
-oc adm policy add-role-to-user  monitoring-rules-view user16 -n user16
-oc adm policy add-role-to-user  monitoring-rules-edit user16 -n user16
-oc adm policy add-role-to-user  monitoring-rules-view user17 -n user17
-oc adm policy add-role-to-user  monitoring-rules-edit user17 -n user17
-oc adm policy add-role-to-user  monitoring-rules-view user18 -n user18
-oc adm policy add-role-to-user  monitoring-rules-edit user18 -n user18
-oc adm policy add-role-to-user  monitoring-rules-view user19 -n user19
-oc adm policy add-role-to-user  monitoring-rules-edit user19 -n user19
-oc adm policy add-role-to-user  monitoring-rules-view user20 -n user20
-oc adm policy add-role-to-user  monitoring-rules-edit user20 -n user20
-oc adm policy add-role-to-user cluster-logging-application-view user1 -n user1
-oc adm policy add-role-to-user cluster-logging-application-view user2 -n user2
-oc adm policy add-role-to-user cluster-logging-application-view user3 -n user3
-oc adm policy add-role-to-user cluster-logging-application-view user4 -n user4
-oc adm policy add-role-to-user cluster-logging-application-view user5 -n user5
-oc adm policy add-role-to-user cluster-logging-application-view user6 -n user6
-oc adm policy add-role-to-user cluster-logging-application-view user7 -n user7
-oc adm policy add-role-to-user cluster-logging-application-view user8 -n user8
-oc adm policy add-role-to-user cluster-logging-application-view user9 -n user9
-oc adm policy add-role-to-user cluster-logging-application-view user10 -n user10
-oc adm policy add-role-to-user cluster-logging-application-view user11 -n user11
-oc adm policy add-role-to-user cluster-logging-application-view user12 -n user12
-oc adm policy add-role-to-user cluster-logging-application-view user13 -n user13
-oc adm policy add-role-to-user cluster-logging-application-view user14 -n user14
-oc adm policy add-role-to-user cluster-logging-application-view user15 -n user15
-oc adm policy add-role-to-user cluster-logging-application-view user16 -n user16
-oc adm policy add-role-to-user cluster-logging-application-view user17 -n user17
-oc adm policy add-role-to-user cluster-logging-application-view user18 -n user18
-oc adm policy add-role-to-user cluster-logging-application-view user19 -n user19
-oc adm policy add-role-to-user cluster-logging-application-view user20 -n user20
+echo "Add Policy  1 to $totalUsers ..."
+oc login -u admin -p $ADMIN_PASSWORD --insecure-skip-tls-verify
+for i in $( seq 1 $totalUsers )
+do
+    username=user$i
+    oc login -u $username -p $USER_PASSWORD --insecure-skip-tls-verify
+    oc adm policy add-role-to-user monitoring-edit $username -n $username
+    oc adm policy add-role-to-user  monitoring-rules-view $username -n $username
+    oc adm policy add-role-to-user  monitoring-rules-edit $username -n $username
+    oc adm policy add-role-to-user cluster-logging-application-view $username -n $username
+done
+
