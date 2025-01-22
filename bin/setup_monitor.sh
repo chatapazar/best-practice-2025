@@ -4,7 +4,6 @@ oc login -u admin -p $ADMIN_PASSWORD --insecure-skip-tls-verify
 for i in $( seq 1 $totalUsers )
 do
     username=user$i
-    oc login -u $username -p $USER_PASSWORD --insecure-skip-tls-verify
     oc adm policy add-role-to-user monitoring-edit $username -n $username
     oc adm policy add-role-to-user  monitoring-rules-view $username -n $username
     oc adm policy add-role-to-user  monitoring-rules-edit $username -n $username

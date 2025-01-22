@@ -37,7 +37,7 @@
   
   ![](images/deploy_3.png)
   
-- Optional: How to Create Project (Don't create project in this workshop, we prepare project for you now!)
+- `Optional: How to Create Project (Don't create project in this workshop, we prepare project for you now!)`
   - create project with your username such as `user1`  
     - go to dropdown at Project: All Projects
     - click Create Project 
