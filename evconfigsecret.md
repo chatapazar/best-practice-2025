@@ -90,7 +90,7 @@ The ConfigMap object provides mechanisms to inject containers with configuration
   kind: ConfigMap
   metadata:
     name: example
-    namespace: <user user name>
+    namespace: <user name>
   data:
     app.backend.200: https://httpbin.org/status/200
     app.backend.400: https://httpbin.org/status/400  
