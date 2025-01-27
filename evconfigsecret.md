@@ -1,7 +1,7 @@
-# Configuration Management with Environment Variable, Configmap & Secret
+# Keep Application Configuration Outside Container Image
 <!-- TOC -->
 
-- [Configuration Management with Environment Variable, Configmap \& Secret](#configuration-management-with-environment-variable-configmap--secret)
+- [Keep Application Configuration Outside Container Image](#keep-application-configuration-outside-container-image)
   - [Prerequisite](#prerequisite)
   - [Environment Variable](#environment-variable)
   - [Configmap](#configmap)

@@ -1,7 +1,7 @@
-# Application Health check
+# Always define Liveness and Readiness Probe
 <!-- TOC -->
 
-- [Application Health check](#application-health-check)
+- [Always define Liveness and Readiness Probe](#always-define-liveness-and-readiness-probe)
   - [Prerequisite](#prerequisite)
   - [Application Probe](#application-probe)
   - [Set Application Health Check](#set-application-health-check)

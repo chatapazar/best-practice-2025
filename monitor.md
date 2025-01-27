@@ -1,7 +1,7 @@
-# OOTB Application Monitoring, Alert & User workload monitoring
+# Increase Observability with Application Metrics
 <!-- TOC -->
 
-- [OOTB Application Monitoring, Alert \& User workload monitoring](#ootb-application-monitoring-alert--user-workload-monitoring)
+- [Increase Observability with Application Metrics](#increase-observability-with-application-metrics)
   - [Prerequisite](#prerequisite)
   - [OpenShift Default Monitoring](#openshift-default-monitoring)
   - [Review Application Performance Metric Code](#review-application-performance-metric-code)

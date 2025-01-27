@@ -1,7 +1,7 @@
-# Deploy application (quarkus) to openshift with s2i
+# Deploy Cloud-Native Application with OpenShift
 <!-- TOC -->
 
-- [Deploy application (quarkus) to openshift with s2i](#deploy-application-quarkus-to-openshift-with-s2i)
+- [Deploy Cloud-Native Application with OpenShift](#deploy-cloud-native-application-with-openshift)
   - [Openshift Project](#openshift-project)
   - [Set Default OpenShift Console!!!](#set-default-openshift-console)
   - [Deploy Application to Openshift with OpenShift Developer Console (S2I)](#deploy-application-to-openshift-with-openshift-developer-console-s2i)
