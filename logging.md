@@ -6,7 +6,7 @@
   - [Review Application Code Logging](#review-application-code-logging)
   - [Monitor Container Log with Developer Console](#monitor-container-log-with-developer-console)
   - [Monitor Container Log with Loki Stack in Openshift](#monitor-container-log-with-loki-stack-in-openshift)
-  - [Next Step](#next-step)
+  - [Back to Table of Content](#back-to-table-of-content)
 
 <!-- /TOC -->
 ## Prerequisite
@@ -96,8 +96,8 @@
 
   ![](images/log_8.png)
 
-## Next Step
-- [Basic Container Storage](storage.md)
+## Back to Table of Content
+- [Best Practices for Develop Cloud-Native Application](README.md)
 
 
 

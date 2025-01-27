@@ -8,7 +8,7 @@
   - [Test Liveness Probe](#test-liveness-probe)
   - [Test Readiness Probe](#test-readiness-probe)
   - [Remove Application Health](#remove-application-health)
-  - [Next Step](#next-step)
+  - [Back to Table of Content](#back-to-table-of-content)
 
 <!-- /TOC -->
 ## Prerequisite
@@ -406,6 +406,6 @@ A Liveness checks determines if the container in which it is scheduled is still 
 - remove readiness and liveness health check (click minus icon), click save and wait until backend redeploy complete (change circle aroubd duke icon to dark blue)
   ![](images/health_8.png)  
 
-## Next Step
-- [Scaling up your application in order to handle workload](scale.md)
+## Back to Table of Content
+- [Best Practices for Develop Cloud-Native Application](README.md)
 
