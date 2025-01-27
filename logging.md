@@ -96,6 +96,18 @@
 
   ![](images/log_8.png)
 
+- try to query with "Return Code: 200" in filter, click Run Query
+
+  ![](images/log_14.png)
+
+- back to topology view, try to scale down pod to 0 and scale up to 1
+
+- back to log again and try to query with "Return Code: 200" and check, Can you see log???
+
+- If you don't found log in pod, go to left menu, select Observe, select tab Log, try again!!!
+
+  ![](images/log_15.png)
+
 ## Back to Table of Content
 - [Best Practices for Develop Cloud-Native Application](README.md)
 
