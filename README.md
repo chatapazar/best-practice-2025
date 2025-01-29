@@ -23,7 +23,7 @@
 
 - [Implement Application Resiliency](servicemesh.md)
 
-- [Use Trusted Base Container](ubi.md)
+- [Use Trusted Base Container & Use a Separate Build Image and Runtime Image](ubi.md)
 
 - [Protect communication between applications](mtlsandnetworkpolicy.md)
 
