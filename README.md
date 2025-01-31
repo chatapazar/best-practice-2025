@@ -1,15 +1,11 @@
 # Best Practices for Develop Cloud-Native Application
+<!-- TOC -->
 
-![](images/preface.png)
+- [Best Practices for Develop Cloud-Native Application](#best-practices-for-develop-cloud-native-application)
 
-## Table of Contents
+<!-- /TOC -->cation Configuration Outside Container Image](evconfigsecret.md)
 
-
-- [Deploy Cloud-Native Application with OpenShift](deploywiths2i.md)
-
-- [Keep Application Configuration Outside Container Image](evconfigsecret.md)
-
-- [Quality of Service (from request/limit) and Pod Auto Scaling](requestlimitvpa.md)
+- [Quality of Service (from request/limit) and Pod Auto Scaling](scale.md)
 
 - [Always define Liveness and Readiness Probe](apphealth.md)
 
