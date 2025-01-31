@@ -1,0 +1,31 @@
+ kind: SecurityContextConstraints
+ apiVersion: security.openshift.io/v1
+ metadata:
+   name: scc-tutorial-scc
+ allowPrivilegedContainer: false
+ runAsUser:
+   type: MustRunAsRange
+   uidRangeMin: 1000
+   uidRangeMax: 2000
+ seLinuxContext:
+   type: RunAsAny
+ fsGroup:
+   type: MustRunAs
+   ranges:
+   - min: 5000
+     max: 6000
+ supplementalGroups:
+   type: MustRunAs
+   ranges:
+   - min: 5000
+     max: 6000
+---
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: use-scc-tutorial-scc
+rules:
+  - apiGroups: ["security.openshift.io"]
+    resources: ["securitycontextconstraints"]
+    resourceNames: ["scc-tutorial-scc"]
+    verbs: ["use"]

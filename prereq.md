@@ -26,10 +26,10 @@ ENDPOINT=$(echo "https://s3.$REGION.amazonaws.com")
 DEFAULT_STORAGE_CLASS=$(oc get sc -A -o jsonpath='{.items[?(@.metadata.annotations.storageclass\.kubernetes\.io/is-default-class=="true")].metadata.name}')
 ```
 
-- a
+
   
 ```sh
-cat manifests/logging-loki-instance.yaml \
+cat manifest/logging-loki-instance.yaml \
     |sed 's/S3_BUCKET/'$S3_BUCKET'/' \
     |sed 's/REGION/'$REGION'/' \
     |sed 's|ACCESS_KEY_ID|'$ACCESS_KEY_ID'|' \
@@ -52,9 +52,9 @@ watch oc get po -n openshift-logging
 ## Create User
 
 ```sh
-export ADMIN_PASSWORD=FDhBkmdVGFec3tDA
-export USER_PASSWORD=Jud6OQf4y3jl8MGF
-export totalUsers=5
+export ADMIN_PASSWORD=dsdp015gNxM9hkwz
+export USER_PASSWORD=dsdp015gNxM9hkwz
+export totalUsers=1
 ```
 
 - run [setup_user.sh](bin/setup_user.sh)
