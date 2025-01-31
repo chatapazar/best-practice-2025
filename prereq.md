@@ -62,3 +62,57 @@ export totalUsers=1
 
 ## Grant ServiceMonitor to User
 - run [setup_monitor.sh](bin/setup_monitor.sh)  
+
+## Manual add account to argocd (in ACD CRD) 
+
+extraConfig:
+  accounts.user1: apiKey, login
+  accounts.user2: apiKey, login
+  accounts.user3: apiKey, login
+  accounts.user4: apiKey, login
+  accounts.user5: apiKey, login
+  accounts.user6: apiKey, login
+  accounts.user7: apiKey, login
+  accounts.user8: apiKey, login
+  accounts.user9: apiKey, login
+  accounts.user10: apiKey, login
+  accounts.user11: apiKey, login
+  accounts.user12: apiKey, login
+  accounts.user13: apiKey, login
+  accounts.user14: apiKey, login
+  accounts.user15: apiKey, login
+  accounts.user16: apiKey, login
+  accounts.user17: apiKey, login
+  accounts.user18: apiKey, login
+  accounts.user19: apiKey, login
+  accounts.user20: apiKey, login
+  accounts.user21: apiKey, login
+  accounts.user22: apiKey, login
+  accounts.user23: apiKey, login
+  accounts.user24: apiKey, login
+  accounts.user25: apiKey, login
+  accounts.user26: apiKey, login
+  accounts.user27: apiKey, login
+  accounts.user28: apiKey, login
+  accounts.user29: apiKey, login
+  accounts.user30: apiKey, login
+
+## and add defaultpolicy to role:admin
+
+rbac:
+  defaultPolicy: 'role:admin'
+
+
+## update argocd password
+
+oc adm policy add-cluster-role-to-user cluster-admin -z openshift-gitops-argocd-application-controller -n openshift-gitops
+ARGOCD=$(oc get route/openshift-gitops-server -n openshift-gitops -o jsonpath='{.spec.host}')
+echo https://$ARGOCD
+PASSWORD=$(oc extract secret/openshift-gitops-cluster -n openshift-gitops --to=-) 2>/dev/null
+echo $PASSWORD
+argocd login $ARGOCD  --insecure --username admin --password $PASSWORD
+for i in $( seq 1 $totalUsers )
+do
+  username=user$i
+  argocd account update-password --account $username --new-password $USER_PASSWORD --current-password $PASSWORD
+done

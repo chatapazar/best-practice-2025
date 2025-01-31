@@ -15,15 +15,11 @@
 
 - [Protect Application Availability with GitOps](gitops.md)
 
-- [Ensure that Pods Terminate Gracefully](gracefully.md)
-
 - [Increase Observability with Application Metrics](monitor.md)
 
 - [Configure the applications to write their logs to stdout/stderr](logging.md)
 
 - [Implement Application Resiliency](servicemesh.md)
-
-- [Use Trusted Base Container & Use a Separate Build Image and Runtime Image](ubi.md)
 
 - [Protect communication between applications](mtlsandnetworkpolicy.md)
 

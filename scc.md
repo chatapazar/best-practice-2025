@@ -14,6 +14,11 @@
   - [Back to Table of Content](#back-to-table-of-content)
 
 <!-- /TOC -->
+  - [Examine after adding custom SCs and SCC](#examine-after-adding-custom-scs-and-scc)
+  - [Test your container's runtime permissions](#test-your-containers-runtime-permissions-1)
+  - [Back to Table of Content](#back-to-table-of-content)
+
+<!-- /TOC -->
 ## Security context constraints concepts
 
 Before attempting this hands-on tutorial, you should understand how SCCs are used. The article ["Overview of security context constraints"](https://developer.ibm.com/learningpaths/secure-context-constraints-openshift/intro/) explains these overall concepts, which are summarized as follows.
@@ -408,9 +413,9 @@ Starting from OpenShift v4.11, more default SCCs are defined to align with the K
   
   ```ssh
   ls -ld / /tmp /var/opt/app/data
-  echo hello > /var/opt/app/data/volume.txt	Write to a file on the volume
-  echo hello > /tmp/temp.txt	Write to a file in the temp directory
-  echo hello > /fail.txt	Try to write a file in the root directory
+  echo hello > /var/opt/app/data/volume.txt
+  echo hello > /tmp/temp.txt
+  echo hello > /fail.txt
   ls -l /tmp/temp.txt /var/opt/app/data/volume.txt
   ```
 
