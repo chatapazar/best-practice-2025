@@ -12,13 +12,8 @@
   - [Examine after adding custom SCs and SCC](#examine-after-adding-custom-scs-and-scc)
   - [Test your container's runtime permissions](#test-your-containers-runtime-permissions-1)
   - [Back to Table of Content](#back-to-table-of-content)
-
 <!-- /TOC -->
-  - [Examine after adding custom SCs and SCC](#examine-after-adding-custom-scs-and-scc)
-  - [Test your container's runtime permissions](#test-your-containers-runtime-permissions-1)
-  - [Back to Table of Content](#back-to-table-of-content)
 
-<!-- /TOC -->
 ## Security context constraints concepts
 
 Before attempting this hands-on tutorial, you should understand how SCCs are used. The article ["Overview of security context constraints"](https://developer.ibm.com/learningpaths/secure-context-constraints-openshift/intro/) explains these overall concepts, which are summarized as follows.
