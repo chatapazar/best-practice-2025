@@ -6,6 +6,7 @@
   - [Use Vertical Pod Autoscaler for sizing](#use-vertical-pod-autoscaler-for-sizing)
   - [Manual Scale Application](#manual-scale-application)
   - [Auto Scale Application](#auto-scale-application)
+  - [Back to Table of Content](#back-to-table-of-content)
 
 <!-- /TOC -->
 <!-- /TOC -->
@@ -196,6 +197,7 @@
 
 - **Optional: if you don't want to wait autoscale down to 1 pod, you can remove HorizontalPodAutoscaler and manual scale down to 1 by yourself.**
   
-
+## Back to Table of Content
+- [Best Practices for Develop Cloud-Native Application](README.md)
 
 
