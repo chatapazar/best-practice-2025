@@ -1,11 +1,17 @@
 # Prerequisite for workshop (Instructor Only)
+<!-- TOC -->
 
-- OCP 4.16
+- [Prerequisite for workshop (Instructor Only)](#prerequisite-for-workshop-instructor-only)
+  - [Config Loki --\> https://github.com/rhthsa/openshift-demo/blob/main/loki.md](#config-loki----httpsgithubcomrhthsaopenshift-demoblobmainlokimd)
+  - [setup user workload monitoring](#setup-user-workload-monitoring)
+  - [Create User](#create-user)
+  - [Grant ServiceMonitor to User](#grant-servicemonitor-to-user)
+  - [Manual add account to argocd (in ACD CRD)](#manual-add-account-to-argocd-in-acd-crd)
+  - [and add defaultpolicy to role:admin](#and-add-defaultpolicy-to-roleadmin)
+  - [update argocd password](#update-argocd-password)
+  - [service mesh](#service-mesh)
 
-## Install Operator
-
-- Web Terminal
-- OpenShift Logging 5.9
+<!-- /TOC -->
 - Loki 5.9
 - VPA
 - GitOps
@@ -115,4 +121,29 @@ for i in $( seq 1 $totalUsers )
 do
   username=user$i
   argocd account update-password --account $username --new-password $USER_PASSWORD --current-password $PASSWORD
+done
+
+
+## service mesh
+
+oc new-project istio-system
+oc create -f manifest/smcp.yaml -n istio-system
+watch oc get smcp/basic -n istio-system
+
+oc create -f manifest/smmr.yaml -n istio-system
+
+for i in $( seq 1 $totalUsers )
+do
+    username=user$i
+    oc apply -f manifest/frontend.yaml -n project1
+    oc patch deployment/frontend-v1 -p '{"spec":{"template":{"metadata":{"annotations":{"sidecar.istio.io/inject":"true"}}}}}' -n mesh-$username
+    oc patch deployment/frontend-v2 -p '{"spec":{"template":{"metadata":{"annotations":{"sidecar.istio.io/inject":"true"}}}}}' -n mesh-$username
+    oc apply -f manifest/backend.yaml -n mesh-$username
+    oc apply -f manifest/backend-destination-rule.yaml -n mesh-$username
+    oc apply -f manifest/backend-virtual-service-v1-v2-50-50.yaml -n mesh-$username
+    oc get pods -n mesh-$username
+    oc set env deployment/frontend-v1 BACKEND_URL=http://backend:8080/ -n mesh-$username
+    oc set env deployment/frontend-v2 BACKEND_URL=http://backend:8080/ -n mesh-$username
+    oc annotate deployment frontend-v1 'app.openshift.io/connects-to=[{"apiVersion":"apps/v1","kind":"Deployment","name":"backend-v1"},{"apiVersion":"apps/v1","kind":"Deployment","name":"backend-v2"}]' -n mesh-$username
+    oc annotate deployment frontend-v2 'app.openshift.io/connects-to=[{"apiVersion":"apps/v1","kind":"Deployment","name":"backend-v1"},{"apiVersion":"apps/v1","kind":"Deployment","name":"backend-v2"}]' -n mesh-$username
 done
