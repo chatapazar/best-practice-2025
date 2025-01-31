@@ -1,17 +1,83 @@
-# Scaling up your application in order to handle workload
+# Quality of Service (from request/limit) and Pod Auto Scaling
 <!-- TOC -->
 
-- [Scaling up your application in order to handle workload](#scaling-up-your-application-in-order-to-handle-workload)
-  - [Prerequisite](#prerequisite)
+- [Quality of Service (from request/limit) and Pod Auto Scaling](#quality-of-service-from-requestlimit-and-pod-auto-scaling)
+  - [Check Quality of Service](#check-quality-of-service)
+  - [Use Vertical Pod Autoscaler for sizing](#use-vertical-pod-autoscaler-for-sizing)
   - [Manual Scale Application](#manual-scale-application)
   - [Auto Scale Application](#auto-scale-application)
 
 <!-- /TOC -->
-## Prerequisite
-- Complete [Deploy application to openshift with s2i](deploywiths2i.md)
-- Go to your project (same as your username)
+<!-- /TOC -->
 - Open Web Terminal by click '>_' on top of OpenShift Web Console
 - use web terminal to run command line
+
+## Check Quality of Service
+
+- Go to Developer Perspective, Topology view and select project <username>
+
+  ![](images/vpa_1.png)
+
+- click Pod link in side panel
+  
+  ![](images/vpa_2.png)
+  
+- click YAML Tab, see qosClass `Remember it`
+  
+  ![](images/vpa_3.png)
+
+- Back to Topology view click `Backend` Deployment, select Actions --> Edit resource limits
+
+  ![](images/vpa_4.png)
+
+- Change Request Cpu = Limit Cpu, Request Memory = Limit Memory, save and wait until pod restart and complete `(Change to Running)`
+  
+  ![](images/vpa_5.png)
+
+- View Pod YAML again, see qosClass 
+  
+  ![](images/vpa_6.png)
+  
+## Use Vertical Pod Autoscaler for sizing 
+
+- click Import YAML icon `(Top Right of Web Console)`, create VPA, click save
+
+  ```yaml
+  apiVersion: autoscaling.k8s.io/v1
+  kind: VerticalPodAutoscaler
+  metadata:
+  name: vpa-recommender
+  spec:
+  targetRef:
+    apiVersion: "apps/v1"
+    kind: Deployment
+    name: backend
+  updatePolicy:
+    updateMode: "Off"
+  ```
+
+  ![](images/vpa_7.png)
+
+- go to web terminal
+- run load test command
+
+  ```bash
+  BACKEND_URL=https://$(oc get route backend -o jsonpath='{.spec.host}')
+  for i in {0..1000}; do
+    curl $BACKEND_URL/backend
+    printf "\n"
+  done
+  ```
+
+- after complete, run vpa to get recommendation  `change namespace/project before run command`
+
+  ```ssh
+  oc get vpa vpa-recommender -n user1 --output yaml
+  ```
+
+  example output
+
+  ![](images/vpa_8.png)
 
 ## Manual Scale Application
 - click topology in left menu, click Duke icon (backend deployment), Details tab

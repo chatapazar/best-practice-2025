@@ -275,7 +275,7 @@ Starting from OpenShift v4.11, more default SCCs are defined to align with the K
    oc create sa anyuid -n scc-user1
   ```
 
-- add scc's `anyuid` to service account `anyuid` in project
+- add scc's `anyuid` to service account `anyuid` in project `(already in this lab)` , example only
   
   ```ssh
   oc adm policy add-scc-to-user -n scc-user1 -z anyuid anyuid
