@@ -53,7 +53,7 @@ watch oc get po -n openshift-logging
 
 ```sh
 export ADMIN_PASSWORD=dsdp015gNxM9hkwz
-export USER_PASSWORD=dsdp015gNxM9hkwz
+export USER_PASSWORD=QcjwTSbFZhnYsVTB
 export totalUsers=1
 ```
 

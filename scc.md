@@ -42,7 +42,7 @@ Starting from OpenShift v4.11, more default SCCs are defined to align with the K
   ![](images/scc_3.png)
 
 
-
+- 
 oc project scc-user1
 
 
@@ -50,7 +50,37 @@ oc get pod -l app=scc-tutorial-default -o yaml
 
 
 
-
+ apiVersion: apps/v1
+ kind: Deployment
+ metadata:
+   name: scc-tutorial-deploy-sc-sa
+ spec:
+   selector:
+     matchLabels:
+       app: scc-tutorial-sc-sa
+   template:
+     metadata:
+       labels:
+         app: scc-tutorial-sc-sa
+     spec:
+       containers:
+       - image: ubi8/ubi-minimal
+         name: ubi-minimal
+         command: ['sh', '-c', 'echo "Hello from user $(id -u)" && sleep infinity']
+         securityContext:
+           runAsUser: 1234
+           runAsGroup: 5678
+         volumeMounts:
+         - mountPath: /var/opt/app/data
+           name: data
+       serviceAccount: anyuid
+       serviceAccountName: anyuid
+       securityContext:
+         fsGroup: 5555
+         supplementalGroups: [5777, 5888]
+       volumes:
+       - emptyDir: {}
+         name: data
 
 
 
