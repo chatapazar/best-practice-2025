@@ -2,13 +2,15 @@
 <!-- TOC -->
 
 - [Implement Application Resiliency](#implement-application-resiliency)
+  - [Current Topology](#current-topology)
   - [Tranffic Mangement with OSSM](#tranffic-mangement-with-ossm)
   - [Test Mesh](#test-mesh)
   - [Observability with OSSM](#observability-with-ossm)
   - [Test Service without Change Code `(Chaos engineering !!!)`](#test-service-without-change-code-chaos-engineering-)
   - [Back to Table of Content](#back-to-table-of-content)
 
-<!-- /TOC -->pology
+<!-- /TOC -->
+## Current Topology
 
 - Review Deployment of Control Plane in Project `istio-system`
 
