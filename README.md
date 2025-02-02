@@ -21,6 +21,6 @@
 
 - [Implement Application Resiliency](servicemesh.md)
 
-- [Protect communication between applications](mtlsandnetworkpolicy.md)
-
 - [Use SCCs to control permissions for pods](scc.md)
+
+- [Protect communication between applications](mtlsandnetworkpolicy.md)

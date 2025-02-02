@@ -1,23 +1,15 @@
 # Prerequisite for workshop (Instructor Only)
-<!-- TOC -->
 
-- [Prerequisite for workshop (Instructor Only)](#prerequisite-for-workshop-instructor-only)
-  - [Config Loki --\> https://github.com/rhthsa/openshift-demo/blob/main/loki.md](#config-loki----httpsgithubcomrhthsaopenshift-demoblobmainlokimd)
-  - [setup user workload monitoring](#setup-user-workload-monitoring)
-  - [Create User](#create-user)
-  - [Grant ServiceMonitor to User](#grant-servicemonitor-to-user)
-  - [Manual add account to argocd (in ACD CRD)](#manual-add-account-to-argocd-in-acd-crd)
-  - [and add defaultpolicy to role:admin](#and-add-defaultpolicy-to-roleadmin)
-  - [update argocd password](#update-argocd-password)
-  - [service mesh](#service-mesh)
+## Install Operator
 
-<!-- /TOC -->
+- Web Terminal
+- OpenShift Logging 5.9
 - Loki 5.9
 - VPA
 - GitOps
-- Red Hat OpenShift distributed tracing platform
-- Kiali
-- OpenShift Service Mesh 2.x
+- Red Hat OpenShift distributed tracing platform 
+- Kiali 1.89
+- OpenShift Service Mesh 2.6
 
 ## Config Loki --> https://github.com/rhthsa/openshift-demo/blob/main/loki.md
 
@@ -58,9 +50,9 @@ watch oc get po -n openshift-logging
 ## Create User
 
 ```sh
-export ADMIN_PASSWORD=dsdp015gNxM9hkwz
-export USER_PASSWORD=QcjwTSbFZhnYsVTB
-export totalUsers=1
+export ADMIN_PASSWORD=IOM6OvkoZRdyB9HI
+export USER_PASSWORD=00o8y6Cg4Nq1SIaP
+export totalUsers=30
 ```
 
 - run [setup_user.sh](bin/setup_user.sh)
@@ -131,19 +123,27 @@ oc create -f manifest/smcp.yaml -n istio-system
 watch oc get smcp/basic -n istio-system
 
 oc create -f manifest/smmr.yaml -n istio-system
+oc describe smmr/default -n istio-system | grep -A2 Spec:
 
 for i in $( seq 1 $totalUsers )
 do
     username=user$i
-    oc apply -f manifest/frontend.yaml -n project1
+    oc apply -f manifest/frontend.yaml -n mesh-$username
     oc patch deployment/frontend-v1 -p '{"spec":{"template":{"metadata":{"annotations":{"sidecar.istio.io/inject":"true"}}}}}' -n mesh-$username
     oc patch deployment/frontend-v2 -p '{"spec":{"template":{"metadata":{"annotations":{"sidecar.istio.io/inject":"true"}}}}}' -n mesh-$username
     oc apply -f manifest/backend.yaml -n mesh-$username
     oc apply -f manifest/backend-destination-rule.yaml -n mesh-$username
     oc apply -f manifest/backend-virtual-service-v1-v2-50-50.yaml -n mesh-$username
-    oc get pods -n mesh-$username
     oc set env deployment/frontend-v1 BACKEND_URL=http://backend:8080/ -n mesh-$username
     oc set env deployment/frontend-v2 BACKEND_URL=http://backend:8080/ -n mesh-$username
     oc annotate deployment frontend-v1 'app.openshift.io/connects-to=[{"apiVersion":"apps/v1","kind":"Deployment","name":"backend-v1"},{"apiVersion":"apps/v1","kind":"Deployment","name":"backend-v2"}]' -n mesh-$username
     oc annotate deployment frontend-v2 'app.openshift.io/connects-to=[{"apiVersion":"apps/v1","kind":"Deployment","name":"backend-v1"},{"apiVersion":"apps/v1","kind":"Deployment","name":"backend-v2"}]' -n mesh-$username
+    oc policy add-role-to-user -n istio-system --role-namespace istio-system mesh-user $username
+done
+
+for i in $( seq 1 $totalUsers )
+do
+    username=user$i
+    oc policy add-role-to-user -n istio-system --role-namespace istio-system mesh-user $username
+    oc adm policy add-role-to-user -n istio-system view $username
 done

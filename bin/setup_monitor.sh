@@ -19,4 +19,5 @@ do
   #oc create -f ./bin/rolebinding.yaml -n scc-$username
   oc create sa anyuid -n scc-$username
   oc adm policy add-scc-to-user -n scc-$username -z anyuid anyuid
+  
 done
