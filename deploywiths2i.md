@@ -18,6 +18,15 @@
 - open browser to URL from Register Page
 
   - confirm URL from instructor
+  
+  ![](images/work_01.png)
+
+  - register with your email and password `openshift`
+  
+  ![](images/work_02.png)
+  
+  - open openshift console from console_url
+  - get user/password `(Don't close this page!!!)`
 
 - login to openshift with your username/password
   
@@ -58,7 +67,7 @@
 
   ![](images/user-set-2.png)
 
-- In Application Section, set default resource type from `Serverless` to `Deployment`
+- In Application Section, set default resource type to `Deployment`
 
   ![](images/user-set-3.png)
 

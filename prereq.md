@@ -3,42 +3,15 @@
 ## Install Operator
 
 - Web Terminal
-- OpenShift Logging 5.9
-- Loki 5.9
+- OpenShift Logging
+- cluster observability 
+- Loki
 - VPA
 - GitOps
-- Red Hat OpenShift distributed tracing platform 
+- Red Hat OpenShift distributed tracing platform  (jaeger)
 - Kiali 1.89
-- OpenShift Service Mesh 2.6
+- OpenShift Service Mesh 2 latest
 
-## Config Loki --> https://github.com/rhthsa/openshift-demo/blob/main/loki.md
-
-- or
-
-```sh
-S3_BUCKET=$(oc get configs.imageregistry.operator.openshift.io/cluster -o jsonpath='{.spec.storage.s3.bucket}' -n openshift-image-registry)
-REGION=$(oc get configs.imageregistry.operator.openshift.io/cluster -o jsonpath='{.spec.storage.s3.region}' -n openshift-image-registry)
-ACCESS_KEY_ID=$(oc get secret image-registry-private-configuration -o jsonpath='{.data.credentials}' -n openshift-image-registry|base64 -d|grep aws_access_key_id|awk -F'=' '{print $2}'|sed 's/^[ ]*//')
-SECRET_ACCESS_KEY=$(oc get secret image-registry-private-configuration -o jsonpath='{.data.credentials}' -n openshift-image-registry|base64 -d|grep aws_secret_access_key|awk -F'=' '{print $2}'|sed 's/^[ ]*//')
-ENDPOINT=$(echo "https://s3.$REGION.amazonaws.com")
-DEFAULT_STORAGE_CLASS=$(oc get sc -A -o jsonpath='{.items[?(@.metadata.annotations.storageclass\.kubernetes\.io/is-default-class=="true")].metadata.name}')
-```
-
-
-  
-```sh
-cat manifest/logging-loki-instance.yaml \
-    |sed 's/S3_BUCKET/'$S3_BUCKET'/' \
-    |sed 's/REGION/'$REGION'/' \
-    |sed 's|ACCESS_KEY_ID|'$ACCESS_KEY_ID'|' \
-    |sed 's|SECRET_ACCESS_KEY|'$SECRET_ACCESS_KEY'|' \
-    |sed 's|ENDPOINT|'$ENDPOINT'|'\
-    |sed 's|DEFAULT_STORAGE_CLASS|'$DEFAULT_STORAGE_CLASS'|' \
-    |oc apply -f -
-watch oc get po -n openshift-logging
-```
-
-- enable console plugin --> at operator hub
 
 ## setup user workload monitoring
 - run and check
@@ -47,12 +20,45 @@ watch oc get po -n openshift-logging
   oc get po -n openshift-user-workload-monitoring
   ```
 
+## Config Loki 
+
+```sh
+S3_BUCKET=$(oc get configs.imageregistry.operator.openshift.io/cluster -o jsonpath='{.spec.storage.s3.bucket}' -n openshift-image-registry)
+REGION=$(oc get configs.imageregistry.operator.openshift.io/cluster -o jsonpath='{.spec.storage.s3.region}' -n openshift-image-registry)
+ACCESS_KEY_ID=$(oc get secret image-registry-private-configuration -o jsonpath='{.data.credentials}' -n openshift-image-registry|base64 -d|grep aws_access_key_id|awk -F'=' '{print $2}'|sed 's/^[ ]*//')
+SECRET_ACCESS_KEY=$(oc get secret image-registry-private-configuration -o jsonpath='{.data.credentials}' -n openshift-image-registry|base64 -d|grep aws_secret_access_key|awk -F'=' '{print $2}'|sed 's/^[ ]*//')
+ENDPOINT=$(echo "https://s3.$REGION.amazonaws.com")
+DEFAULT_STORAGE_CLASS=$(oc get sc -A -o jsonpath='{.items[?(@.metadata.annotations.storageclass\.kubernetes\.io/is-default-class=="true")].metadata.name}')
+
+cat manifests/logging-loki-instance.yaml \
+|sed 's/S3_BUCKET/'$S3_BUCKET'/' \
+|sed 's/REGION/'$REGION'/' \
+|sed 's|ACCESS_KEY_ID|'$ACCESS_KEY_ID'|' \
+|sed 's|SECRET_ACCESS_KEY|'$SECRET_ACCESS_KEY'|' \
+|sed 's|ENDPOINT|'$ENDPOINT'|'\
+|sed 's|DEFAULT_STORAGE_CLASS|'$DEFAULT_STORAGE_CLASS'|' \
+|oc apply -f -
+```
+
+# https://docs.redhat.com/en/documentation/red_hat_openshift_logging/6.3/html/about_openshift_logging/quick-start#quickstart-viaq_quick-start
+
+```sh
+oc create sa collector -n openshift-logging
+oc adm policy add-cluster-role-to-user logging-collector-logs-writer -z collector -n openshift-logging
+oc adm policy add-cluster-role-to-user collect-application-logs -z collector -n openshift-logging
+oc adm policy add-cluster-role-to-user collect-audit-logs -z collector -n openshift-logging
+oc adm policy add-cluster-role-to-user collect-infrastructure-logs -z collector -n openshift-logging
+
+oc apply -f manifests/ClusterLogForwarder.yaml
+```
+
+
 ## Create User
 
 ```sh
-export ADMIN_PASSWORD=IOM6OvkoZRdyB9HI
-export USER_PASSWORD=00o8y6Cg4Nq1SIaP
-export totalUsers=30
+export ADMIN_PASSWORD=e8PZUmIz6TGiP4Qu
+export USER_PASSWORD=5llxOOCC68jvvr6s
+export totalUsers=3
 ```
 
 - run [setup_user.sh](bin/setup_user.sh)
@@ -116,11 +122,19 @@ do
 done
 
 
+## Deploy test app at test namespace
+
+oc new-project test
+
+# deploy https://github.com/chatapazar/openshift-workshop.git , path /sample, app name: test, scale 3
+
 ## service mesh
 
 oc new-project istio-system
 oc create -f manifest/smcp.yaml -n istio-system
 watch oc get smcp/basic -n istio-system
+
+## edit smmr.yaml before run
 
 oc create -f manifest/smmr.yaml -n istio-system
 oc describe smmr/default -n istio-system | grep -A2 Spec:
