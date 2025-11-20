@@ -50,7 +50,7 @@ spec:
             memory: 350Mi
         env:
           - name: APP_BACKEND
-            value: https://httpbin.org/status/200
+            value: http://test.test.svc.cluster.local:8080/status/200
           - name: APP_VERSION
             value: v1
           - name: quarkus.log.console.color
@@ -123,7 +123,7 @@ spec:
             memory: 350Mi
         env:
           - name: APP_BACKEND
-            value: https://httpbin.org/delay/4
+            value: http://test.test.svc.cluster.local:8080/delay/4
           - name: APP_VERSION
             value: v2
           - name: quarkus.log.console.color

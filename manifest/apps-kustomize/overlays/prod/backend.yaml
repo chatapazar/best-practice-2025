@@ -10,4 +10,4 @@ spec:
         - name: backend
           env:
             - name: APP_BACKEND
-              value: https://httpbin.org/status/201
+              value: http://test.test.svc.cluster.local:8080/status/201
