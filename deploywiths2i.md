@@ -34,7 +34,7 @@
   - password: `xxx` --> get from register page
   ![](images/work_1.png)
 
-- if login first time, dev console will launch developer quick tour, click Skip tour
+- if login first time, dev console will launch developer quick tour, click `Skip tour`
   
   ![](images/deploy_2.png)
 
@@ -43,7 +43,7 @@
   ![](images/work_2.png)
 
 - default project is your name. such as `user1`, `user2`  
-- if deveveloper console not default your project, click Project name 'PR userx' in topology or select from Project Dropdownlist
+- if deveveloper console not default your project, click Project name 'PR userx' in topology or select from Project Dropdownlist (such as your user name is `user1` choose `user1`)
   
   ![](images/deploy_3.png)
   
@@ -84,7 +84,7 @@
 
   ![](images/work_7.png)
 
-  - Optional: Not required for this lab! (by click Show advanced Git options)
+  - `Optional: Not required for this lab!` (by click Show advanced Git options)
     
     you can input additional information for get source code such as
     - Git Reference: for branch, tag, or commit. (default s2i will checkout from default branch such as main or master)
@@ -136,24 +136,42 @@
   ![](images/work_14.png)
 
 - in build section, OpenShift Build is creating image with S2I  
+  
   ![](images/work_15.png)
+  
 - click View logs at Build #1
+  
   ![](images/work_16.png)
+  
 - wait until build complete, see build backend-1 change from running to complete (3-5 minutes)
+  
   ![](images/work_18.png)
+  
 - after build complete, openshift will take the image from the build to deploy and create a pod as shown in the picture.
 - click 'Topology' menu from left side for back to Topology view again
+  
   ![](images/work_19.png)  
+  
 - wait until Pod 'backend-xxxx-xxx' change status to Running
+  
   ![](images/work_20.png) 
+  
 - click View logs, check application start complete (wait until logging show message 'Installed features: ....') 
+  
   ![](images/work_21.png)  
+  
 - click Topology in left pane, at duke icon, you will see Open URL link, click it to open browser to this application in new tab
+  
   ![](images/work_22.png)  
+  
 - Or Click Location from Routes 'backend' in 'backend' Deployment information
+  
   ![](images/work_23.png)  
+  
 - Example of backend application landing page
+  
   ![](images/work_25.png)  
+  
 - Deployment Done!
 
 ## Test Rest API of Backend Application

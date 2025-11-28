@@ -12,6 +12,14 @@
 - Kiali 1.89
 - OpenShift Service Mesh 2 latest
 
+## Create User
+
+```sh
+export ADMIN_PASSWORD=ZjcHN14bwo63iQBi
+export USER_PASSWORD=zuWEs0oVouWcMpHN
+export totalUsers=3
+```
+
 
 ## setup user workload monitoring
 - run and check
@@ -53,13 +61,11 @@ oc apply -f manifests/ClusterLogForwarder.yaml
 ```
 
 
-## Create User
+## Deploy test app at test namespace
 
-```sh
-export ADMIN_PASSWORD=e8PZUmIz6TGiP4Qu
-export USER_PASSWORD=5llxOOCC68jvvr6s
-export totalUsers=3
-```
+oc new-project test
+
+# deploy https://github.com/chatapazar/openshift-workshop.git , path /sample, app name: test, scale 3
 
 - run [setup_user.sh](bin/setup_user.sh)
 
@@ -122,11 +128,6 @@ do
 done
 
 
-## Deploy test app at test namespace
-
-oc new-project test
-
-# deploy https://github.com/chatapazar/openshift-workshop.git , path /sample, app name: test, scale 3
 
 ## service mesh
 
@@ -134,7 +135,7 @@ oc new-project istio-system
 oc create -f manifest/smcp.yaml -n istio-system
 watch oc get smcp/basic -n istio-system
 
-## edit smmr.yaml before run
+## edit smmr.yaml before run, add alll project of all user
 
 oc create -f manifest/smmr.yaml -n istio-system
 oc describe smmr/default -n istio-system | grep -A2 Spec:
