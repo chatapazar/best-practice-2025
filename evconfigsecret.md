@@ -83,7 +83,7 @@ The ConfigMap object provides mechanisms to inject containers with configuration
 
 - Click YAML View
 - Create ConfigMap with YAML, copy below yaml to editor, click create
-  - Remark: change namespace to your username
+  - `Remark: change namespace to your username`
 
   ```yaml
   apiVersion: v1
