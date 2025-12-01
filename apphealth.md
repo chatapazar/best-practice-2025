@@ -198,7 +198,8 @@ A Liveness checks determines if the container in which it is scheduled is still 
 - back to Topology Page
   
 ## Set Application Health Check
-- go to web terminal
+- Batck to Topology
+- go to web terminal `(Not a Pod Terminal!)`
 - pause auto re-deploy from deployment update configuration trigger
   ```bash
   oc rollout pause deployment/backend
@@ -275,28 +276,7 @@ A Liveness checks determines if the container in which it is scheduled is still 
   backend-87784db56-2642v   1/1     Running   0          2m38s
   backend-87784db56-swg4m   1/1     Running   1          6m19s
   ```
-- check service call to both pods
-  ```bash
-  oc describe service backend
-  ```
-  example result, in endpoints section have 2 ipaddress from both pods.
-  ```bash
-  ...
-  IP:                172.30.76.111
-  IPs:               172.30.76.111
-  Port:              8080-tcp  8080/TCP
-  TargetPort:        8080/TCP
-  Endpoints:         10.131.0.43:8080,10.131.0.44:8080
-  Port:              8443-tcp  8443/TCP
-  TargetPort:        8443/TCP
-  Endpoints:         10.131.0.43:8443,10.131.0.44:8443
-  Port:              8778-tcp  8778/TCP
-  TargetPort:        8778/TCP
-  Endpoints:         10.131.0.43:8778,10.131.0.44:8778
-  Session Affinity:  None
-  Events:            <none>
-  ...
-  ```
+
 - test call backend api from route, call 2-4 times to check response from both pods
   ```bash
   BACKEND_URL=https://$(oc get route backend -o jsonpath='{.spec.host}')
@@ -325,7 +305,9 @@ A Liveness checks determines if the container in which it is scheduled is still 
   Normal   Started         18m (x3 over 37m)  kubelet  Started container backend
   Warning  Unhealthy       3s (x7 over 21s)   kubelet  Readiness probe failed: HTTP probe failed with statuscode: 503
   ```bash
+
 - check pod not ready
+
   ```bash
   oc get pods -l app=backend
   ```
@@ -335,28 +317,9 @@ A Liveness checks determines if the container in which it is scheduled is still 
   backend-87784db56-2642v   0/1     Running   0          9m48s
   backend-87784db56-swg4m   1/1     Running   0          13m
   ```
-- check service again
-  ```bash
-  oc describe service backend
-  ```
-  example result, endpoints has only one ipaddress.
-  ```bash
-  ...
-  IP:                172.30.76.111
-  IPs:               172.30.76.111
-  Port:              8080-tcp  8080/TCP
-  TargetPort:        8080/TCP
-  Endpoints:         10.131.0.43:8080
-  Port:              8443-tcp  8443/TCP
-  TargetPort:        8443/TCP
-  Endpoints:         10.131.0.43:8443
-  Port:              8778-tcp  8778/TCP
-  TargetPort:        8778/TCP
-  Endpoints:         10.131.0.43:8778
-  Session Affinity:  None
-  Events:            <none>
-   ```
+
 - test call backend again
+
   ```bash
   BACKEND_URL=https://$(oc get route backend -o jsonpath='{.spec.host}')
   curl $BACKEND_URL/backend
