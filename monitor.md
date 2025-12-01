@@ -194,7 +194,7 @@ Developer can enable monitoring for user-defined projects in addition to the def
 
   ![](images/mon_18.png)
 
-- Remark: if you don't found metrics 'application*' in auto suggession, wait a few minute and retry again
+- Remark: `if you don't found metrics 'application*'` in auto suggession, wait a few minute and retry again
 - select from suggestion or type in query box with `application_org_acme_getting_started_BackendResource_countBackend_total`, type enter.
 
   ![](images/mon_19.png) 
@@ -240,12 +240,12 @@ Developer can enable monitoring for user-defined projects in addition to the def
   ![](images/alert_2.png)
   
   
-- Test `HightLatency` , run k6 as pod on OpenShift
+- Test `HightLatency` , run k6 as pod on OpenShift, `Change userX to your username before run`
   
   ```bash
-  BACKEND_URL=https://$(oc get route backend -n user1 -o jsonpath='{.spec.host}')/backend
+  BACKEND_URL=https://$(oc get route backend -n userX -o jsonpath='{.spec.host}')/backend
   curl -o load-test-k6.js https://raw.githubusercontent.com/rhthsa/openshift-demo/main/manifests/load-test-k6.js
-  oc run load-test -n user1 -i \
+  oc run load-test -n userX -i \
   --image=loadimpact/k6 --rm=true --restart=Never \
   --  run -  < load-test-k6.js \
   -e URL=$BACKEND_URL -e THREADS=25 -e DURATION=2m -e RAMPUP=30s -e RAMPDOWN=30s
