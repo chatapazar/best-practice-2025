@@ -44,7 +44,7 @@
 
   ![](images/mon_7.png) 
 
-- OpenShift Monitoring base on Prometheus Technology, you can use PromQL for retrive metric information, click Add query and type 'cpu' and wail auto suggestion, 
+- OpenShift Monitoring base on Prometheus Technology, you can use PromQL for retrive metric information, click Add query and type 'pod' and wail auto suggestion, 
 
   ![](images/mon_8.png) 
 
