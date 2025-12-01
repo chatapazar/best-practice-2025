@@ -12,12 +12,28 @@
 - Kiali 1.89
 - OpenShift Service Mesh 2 latest
 
+## scale console https://access.redhat.com/solutions/5841381
+
+```yaml
+console operator change to Unmanaged   
+
+remove   
+   nodeSelector:
+     node-role.kubernetes.io/master: ''
+```
+
+## Deploy test app at test namespace
+
+oc new-project test
+
+# deploy https://github.com/chatapazar/openshift-workshop.git , path /sample, app name: test, scale 3
+
 ## Create User
 
 ```sh
-export ADMIN_PASSWORD=ZjcHN14bwo63iQBi
-export USER_PASSWORD=zuWEs0oVouWcMpHN
-export totalUsers=3
+export ADMIN_PASSWORD=peqfMDHVFPGgm8gJ
+export USER_PASSWORD=DgPZHU1DVZtoBd8P
+export totalUsers=20
 ```
 
 
@@ -59,13 +75,6 @@ oc adm policy add-cluster-role-to-user collect-infrastructure-logs -z collector 
 
 oc apply -f manifests/ClusterLogForwarder.yaml
 ```
-
-
-## Deploy test app at test namespace
-
-oc new-project test
-
-# deploy https://github.com/chatapazar/openshift-workshop.git , path /sample, app name: test, scale 3
 
 - run [setup_user.sh](bin/setup_user.sh)
 
