@@ -12,6 +12,7 @@
   - [Examine after adding custom SCs and SCC](#examine-after-adding-custom-scs-and-scc)
   - [Test your container's runtime permissions](#test-your-containers-runtime-permissions-1)
   - [Back to Table of Content](#back-to-table-of-content)
+
 <!-- /TOC -->
 
 ## Security context constraints concepts
@@ -237,10 +238,12 @@ Starting from OpenShift v4.11, more default SCCs are defined to align with the K
 
   ![](images/scc_20.png)
 
+<!--
 - openshift show error about deployment
   
   ![](images/scc_21.png)
 
+-->
 - scroll down to view ReplicaFailure in Conditions
 
   ![](images/scc_22.png)
