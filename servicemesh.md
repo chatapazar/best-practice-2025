@@ -6,7 +6,6 @@
   - [Tranffic Mangement with OSSM](#tranffic-mangement-with-ossm)
   - [Test Mesh](#test-mesh)
   - [Observability with OSSM](#observability-with-ossm)
-  - [Test Service without Change Code `(Chaos engineering !!!)`](#test-service-without-change-code-chaos-engineering-)
   - [Back to Table of Content](#back-to-table-of-content)
 
 <!-- /TOC -->
@@ -263,6 +262,8 @@
 
 - `Stop workload in Web Terminal by Ctrl+C !!!`
 
+<!--
+
 
 ## Test Service without Change Code `(Chaos engineering !!!)`
 
@@ -355,6 +356,7 @@
   
   ![](images/mesh/mesh_49.png)
 
+-->
 ## Back to Table of Content
 - [Best Practices for Develop Cloud-Native Application](README.md)
 
