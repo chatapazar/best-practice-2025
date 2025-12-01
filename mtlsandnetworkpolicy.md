@@ -60,7 +60,7 @@
 - Test call again in web terminal, `userX` project
 
   ```ssh
-  curl -v http://backend.user1.svc.cluster.local:8080/backend
+  curl -v http://backend.userX.svc.cluster.local:8080/backend
   ```
 
   example result
@@ -72,7 +72,7 @@
 - Try to call backend service with curl command line
 
   ```ssh
-  curl -v http://backend.user1.svc.cluster.local:8080/backend
+  curl -v http://backend.userX.svc.cluster.local:8080/backend
   ```
   
   example result
