@@ -47,14 +47,14 @@
   apiVersion: autoscaling.k8s.io/v1
   kind: VerticalPodAutoscaler
   metadata:
-  name: vpa-recommender
+    name: vpa-recommender
   spec:
-  targetRef:
-    apiVersion: "apps/v1"
-    kind: Deployment
-    name: backend
-  updatePolicy:
-    updateMode: "Off"
+    targetRef:
+      apiVersion: "apps/v1"
+      kind: Deployment
+      name: backend
+    updatePolicy:
+      updateMode: "Off"
   ```
 
   ![](images/vpa_7.png)
