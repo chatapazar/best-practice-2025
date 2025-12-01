@@ -1,12 +1,12 @@
 # Quality of Service (from request/limit) and Pod Auto Scaling
 <!-- TOC -->
 
-- [Quality of Service (from request/limit) and Pod Auto Scaling](#quality-of-service-from-requestlimit-and-pod-auto-scaling)
-  - [Check Quality of Service](#check-quality-of-service)
-  - [Use Vertical Pod Autoscaler for sizing](#use-vertical-pod-autoscaler-for-sizing)
-  - [Manual Scale Application](#manual-scale-application)
-  - [Auto Scale Application](#auto-scale-application)
-  - [Back to Table of Content](#back-to-table-of-content)
+- [Quality of Service from request/limit and Pod Auto Scaling](#quality-of-service-from-requestlimit-and-pod-auto-scaling)
+    - [Check Quality of Service](#check-quality-of-service)
+    - [Use Vertical Pod Autoscaler for sizing](#use-vertical-pod-autoscaler-for-sizing)
+    - [Manual Scale Application](#manual-scale-application)
+    - [Auto Scale Application](#auto-scale-application)
+    - [Back to Table of Content](#back-to-table-of-content)
 
 <!-- /TOC -->
 <!-- /TOC -->
@@ -73,7 +73,7 @@
 - after complete, run vpa to get recommendation  `change namespace/project before run command`
 
   ```ssh
-  oc get vpa vpa-recommender -n user1 --output yaml
+  oc get vpa vpa-recommender -n userX --output yaml
   ```
 
   example output
@@ -148,6 +148,7 @@
   - Minimum Pods: `1`
   - Maximum Pods: `3`
   - CPU Utilization: `10%`
+  - Memory Utilization: `10%`
   
   ![](images/scale_13.png) 
 
