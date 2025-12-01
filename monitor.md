@@ -12,7 +12,7 @@
 <!-- /TOC -->
 ## Prerequisite
 - Complete [Deploy Cloud-Native Application with OpenShift](deploywiths2i.md)
-- Go to your project (same as your username)
+- Go to your project `(same as your username)`
 - Open Web Terminal by click '>_' on top of OpenShift Web Console
 - use web terminal to run command line
 
@@ -44,7 +44,7 @@
 
   ![](images/mon_7.png) 
 
-- OpenShift Monitoring base on Prometheus Technology, you can use PromQL for retrive metric information, in select query dropdown list, select Custom query and type 'cpu' and wail auto suggestion, 
+- OpenShift Monitoring base on Prometheus Technology, you can use PromQL for retrive metric information, click Add query and type 'cpu' and wail auto suggestion, 
 
   ![](images/mon_8.png) 
 
