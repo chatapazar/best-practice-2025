@@ -196,10 +196,10 @@
   oc get route -n istio-system | grep mesh-userX-frontend-gateway
   ```
 
-- test call mesh  
+- test call mesh  (Change X to your username!!!)
   
   ```ssh
-  FRONTEND_ISTIO_ROUTE=$(oc get route -n istio-system|grep mesh-user1-frontend-gateway |awk '{print $2}')
+  FRONTEND_ISTIO_ROUTE=$(oc get route -n istio-system|grep mesh-userX-frontend-gateway |awk '{print $2}')
   curl http://$FRONTEND_ISTIO_ROUTE
   ```
 
@@ -209,15 +209,15 @@
   
 ## Observability with OSSM
 
-- run workload to mesh, open web terminal and run workload to mesh
+- run workload to mesh, open web terminal and run workload to mesh (Change X to your username!!!)
 
   ```ssh
-  FRONTEND_ISTIO_ROUTE=$(oc get route -n istio-system|grep mesh-user1-frontend-gateway |awk '{print $2}')
+  FRONTEND_ISTIO_ROUTE=$(oc get route -n istio-system|grep mesh-user2-frontend-gateway |awk '{print $2}')
   while [ 1 ];
   do
-        OUTPUT=$(curl -s $FRONTEND_ISTIO_ROUTE)
-        printf "%s\n" $OUTPUT
-        sleep 1
+      curl -s $FRONTEND_ISTIO_ROUTE
+      printf "%s\n"
+      sleep 1
   done
   ```
 

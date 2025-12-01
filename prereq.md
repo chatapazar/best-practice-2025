@@ -14,13 +14,7 @@
 
 ## scale console https://access.redhat.com/solutions/5841381
 
-```yaml
-console operator change to Unmanaged   
 
-remove   
-   nodeSelector:
-     node-role.kubernetes.io/master: ''
-```
 
 ## Deploy test app at test namespace
 
@@ -170,4 +164,12 @@ do
     username=user$i
     oc policy add-role-to-user -n istio-system --role-namespace istio-system mesh-user $username
     oc adm policy add-role-to-user -n istio-system view $username
+done
+
+
+for i in $( seq 1 $totalUsers )
+do
+    username=user$i
+    oc apply -f manifest/backend.yaml -n mesh-$username
+    
 done
